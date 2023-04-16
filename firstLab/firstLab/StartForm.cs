@@ -12,11 +12,19 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace firstLab
 {
-    public partial class Form1 : Form
+    public partial class StartForm : Form
     {
-        public Form1()
+        public StartForm()
         {
             InitializeComponent();
+            tb_firstTriangleX.Text = Triangle.firstX.ToString();
+            tb_secondTriangleX.Text = Triangle.secondX.ToString();
+            tb_thirdTriangleX.Text = Triangle.thirdX.ToString();
+            tb_firstTriangleY.Text = Triangle.firstY.ToString();
+            tb_secondTriangleY.Text= Triangle.secondY.ToString();
+            tb_thirdTriangleY.Text= Triangle.thirdY.ToString();
+            tb_dotX.Text= Dot.dotX.ToString();
+            tb_dotY.Text= Dot.dotY.ToString();
         }
         private void Form1_Shown(Object sender, EventArgs e)
         {
@@ -65,7 +73,7 @@ namespace firstLab
                 tb.Clear();
             }
         }
-
+/*
         private void bt_upload_Click(object sender, EventArgs e)
         {
             if (openFile.ShowDialog() == DialogResult.Cancel)
@@ -115,6 +123,13 @@ namespace firstLab
             // сохраняем текст в файл
             System.IO.File.WriteAllLines(filename, filedata);
             MessageBox.Show("Файл сохранен");
+        }
+*/
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            FileForm frm = new FileForm();
+            frm.ShowDialog();
+            this.Close();
         }
     }
 }
