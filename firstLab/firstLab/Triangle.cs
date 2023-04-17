@@ -14,5 +14,6 @@ namespace firstLab
         public static double secondY=0;
         public static double thirdX=0;
         public static double thirdY=0;
+        public static string answerState;
     }
 }

@@ -51,6 +51,7 @@
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.returnButton = new System.Windows.Forms.Button();
             this.cb_welcome = new System.Windows.Forms.CheckBox();
+            this.bt_tests = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bt_answer
@@ -234,7 +235,7 @@
             // lb_answer
             // 
             this.lb_answer.AutoSize = true;
-            this.lb_answer.Location = new System.Drawing.Point(420, 121);
+            this.lb_answer.Location = new System.Drawing.Point(420, 156);
             this.lb_answer.Name = "lb_answer";
             this.lb_answer.Size = new System.Drawing.Size(0, 16);
             this.lb_answer.TabIndex = 20;
@@ -253,9 +254,9 @@
             this.returnButton.Location = new System.Drawing.Point(12, 199);
             this.returnButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.returnButton.Name = "returnButton";
-            this.returnButton.Size = new System.Drawing.Size(130, 56);
+            this.returnButton.Size = new System.Drawing.Size(166, 56);
             this.returnButton.TabIndex = 26;
-            this.returnButton.Text = "Перейтик работе с файлами";
+            this.returnButton.Text = "Перейти к работе с файлами";
             this.returnButton.UseVisualStyleBackColor = true;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
@@ -270,11 +271,23 @@
             this.cb_welcome.UseVisualStyleBackColor = true;
             this.cb_welcome.CheckedChanged += new System.EventHandler(this.cb_Welcome_CheckedChanged);
             // 
+            // bt_tests
+            // 
+            this.bt_tests.Location = new System.Drawing.Point(184, 199);
+            this.bt_tests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bt_tests.Name = "bt_tests";
+            this.bt_tests.Size = new System.Drawing.Size(166, 56);
+            this.bt_tests.TabIndex = 28;
+            this.bt_tests.Text = "Модульные тесты";
+            this.bt_tests.UseVisualStyleBackColor = true;
+            this.bt_tests.Click += new System.EventHandler(this.bt_tests_Click);
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(771, 266);
+            this.Controls.Add(this.bt_tests);
             this.Controls.Add(this.cb_welcome);
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.lb_answer);
@@ -333,6 +346,7 @@
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.Button returnButton;
         private System.Windows.Forms.CheckBox cb_welcome;
+        private System.Windows.Forms.Button bt_tests;
     }
 }
 

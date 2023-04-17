@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace firstLab
@@ -51,21 +52,30 @@ namespace firstLab
 
         private void bt_answer_Click(object sender, EventArgs e)
         {
-            double a = (Convert.ToDouble(tb_firstTriangleX.Text) - Convert.ToDouble(tb_dotX.Text)) * (Convert.ToDouble(tb_secondTriangleY.Text) - Convert.ToDouble(tb_firstTriangleY.Text)) - (Convert.ToDouble(tb_secondTriangleX.Text) - Convert.ToDouble(tb_firstTriangleX.Text)) * (Convert.ToDouble(tb_firstTriangleY.Text) - Convert.ToDouble(tb_dotY.Text));
-            double b = (Convert.ToDouble(tb_secondTriangleX.Text) - Convert.ToDouble(tb_dotX.Text)) * (Convert.ToDouble(tb_thirdTriangleY.Text) - Convert.ToDouble(tb_secondTriangleY.Text)) - (Convert.ToDouble(tb_thirdTriangleX.Text) - Convert.ToDouble(tb_secondTriangleX.Text)) * (Convert.ToDouble(tb_secondTriangleY.Text) - Convert.ToDouble(tb_dotX.Text));
-            double c = (Convert.ToDouble(tb_thirdTriangleX.Text) - Convert.ToDouble(tb_dotX.Text)) * (Convert.ToDouble(tb_firstTriangleY.Text) - Convert.ToDouble(tb_thirdTriangleY.Text)) - (Convert.ToDouble(tb_firstTriangleX.Text) - Convert.ToDouble(tb_thirdTriangleX.Text)) * (Convert.ToDouble(tb_thirdTriangleY.Text) - Convert.ToDouble(tb_dotY.Text));
-
-            lb_answer.Visible = true;
-
-            if ((a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0))
+            if (isATriangle(Convert.ToDouble(tb_firstTriangleX.Text), Convert.ToDouble(tb_secondTriangleX.Text), Convert.ToDouble(tb_thirdTriangleX.Text), Convert.ToDouble(tb_firstTriangleY.Text), Convert.ToDouble(tb_secondTriangleY.Text), Convert.ToDouble(tb_thirdTriangleY.Text)))
             {
-          
-                lb_answer.Text="Принадлежит треугольнику";
+                double a = (Convert.ToDouble(tb_firstTriangleX.Text) - Convert.ToDouble(tb_dotX.Text)) * (Convert.ToDouble(tb_secondTriangleY.Text) - Convert.ToDouble(tb_firstTriangleY.Text)) - (Convert.ToDouble(tb_secondTriangleX.Text) - Convert.ToDouble(tb_firstTriangleX.Text)) * (Convert.ToDouble(tb_firstTriangleY.Text) - Convert.ToDouble(tb_dotY.Text));
+                double b = (Convert.ToDouble(tb_secondTriangleX.Text) - Convert.ToDouble(tb_dotX.Text)) * (Convert.ToDouble(tb_thirdTriangleY.Text) - Convert.ToDouble(tb_secondTriangleY.Text)) - (Convert.ToDouble(tb_thirdTriangleX.Text) - Convert.ToDouble(tb_secondTriangleX.Text)) * (Convert.ToDouble(tb_secondTriangleY.Text) - Convert.ToDouble(tb_dotX.Text));
+                double c = (Convert.ToDouble(tb_thirdTriangleX.Text) - Convert.ToDouble(tb_dotX.Text)) * (Convert.ToDouble(tb_firstTriangleY.Text) - Convert.ToDouble(tb_thirdTriangleY.Text)) - (Convert.ToDouble(tb_firstTriangleX.Text) - Convert.ToDouble(tb_thirdTriangleX.Text)) * (Convert.ToDouble(tb_thirdTriangleY.Text) - Convert.ToDouble(tb_dotY.Text));
+
+                lb_answer.Visible = true;
+                if ((a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0))
+                {
+
+                    lb_answer.Text = "Принадлежит треугольнику";
+                }
+                else
+                {
+                    lb_answer.Text = "Не принадлежит треугольнику";
+                }
+                Triangle.answerState = lb_answer.Text;
             }
             else
             {
-                lb_answer.Text = "Не принадлежит треугольнику";
+                MessageBox.Show("Не треугольник", "Ахтунг!Ошибка", MessageBoxButtons.OK);
+                Triangle.answerState = "Не треугольник";
             }
+
         }
 
         private void tb_TextChanged(object sender, EventArgs e)
@@ -101,6 +111,46 @@ namespace firstLab
             {
                 System.IO.File.WriteAllText("Cache", "Welcome");
             }
+        }
+
+        private void bt_tests_Click(object sender, EventArgs e)
+        {
+            int numTest = 0;
+            double a;
+            double b;
+            double c;
+            double z;
+            try
+            {
+                while (numTest < 5)
+                {
+                    a = (numTest - numTest) * (numTest - numTest) - (numTest - numTest) * (numTest - numTest);
+                    b = (numTest - numTest) * (numTest - numTest) - (numTest - numTest) * (numTest - numTest);
+                    c = (numTest - numTest) * (numTest - numTest) - (numTest - numTest) * (numTest - numTest);
+                    z = a + b + c;
+                    numTest += 1;
+                }
+                MessageBox.Show("Модульные тесты прошли успешно!", "Всё супер!", MessageBoxButtons.OK);
+
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка в тесте номер:"+numTest+1, "Ахтунг!Ошибка", MessageBoxButtons.OK);
+            }
+        }
+
+        private bool isATriangle(double Xa,double Xb,double Xc,double Ya,double Yb, double Yc)
+        {
+            bool answer=true;
+            double AB=Math.Sqrt(Math.Pow(Xb-Xa,2)+Math.Pow(Yb-Ya,2));
+            double BC = Math.Sqrt(Math.Pow(Xc - Xb, 2) + Math.Pow(Yc - Yb, 2));
+            double CA = Math.Sqrt(Math.Pow(Xa - Xc, 2) + Math.Pow(Ya - Yc, 2));
+            if (AB + BC >= CA || BC + CA >= AB || CA + AB >= BC)
+            {
+                answer=false;
+            }
+
+            return answer;
         }
     }
 }

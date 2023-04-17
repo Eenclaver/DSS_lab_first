@@ -41,8 +41,10 @@ namespace firstLab
                 Triangle.secondY = Convert.ToDouble(fileText[5]);
                 Triangle.thirdX = Convert.ToDouble(fileText[6]);
                 Triangle.thirdY = Convert.ToDouble(fileText[7]);
-                StartForm frm = new StartForm();
-                frm.ShowDialog();
+                FileForm.ActiveForm.Hide();
+                StartForm MyForm2 = new StartForm();
+                MyForm2.ShowDialog();
+                Close();
 
                 MessageBox.Show("Файл открыт");
             }
@@ -79,6 +81,27 @@ namespace firstLab
             MyForm2.ShowDialog();
             Close();
 
+        }
+
+        private void bt_result_Click(object sender, EventArgs e)
+        {
+            if (saveFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            string[] filedata = new string[9];
+            filedata[0] = "Кордината X точки:" + Convert.ToString(Dot.dotX);
+            filedata[1] = "Кордината Y точки:" + Convert.ToString(Dot.dotY);
+            filedata[2] = "Кордината X первой точки треугольника:" + Convert.ToString(Triangle.firstX);
+            filedata[3] = "Кордината Y первой точки треугольника:" + Convert.ToString(Triangle.firstY);
+            filedata[4] = "Кордината X второй точки треугольнка:" + Convert.ToString(Triangle.secondX);
+            filedata[5] = "Кордината Y второй точки треугольника:" + Convert.ToString(Triangle.secondY);
+            filedata[6] = "Кордината X третьей точки треугольника:" + Convert.ToString(Triangle.thirdX);
+            filedata[7] = "Кордината Y третьей точки треугольника:" + Convert.ToString(Triangle.thirdY);
+            filedata[7] = "Результат"+Triangle.answerState;
+            // получаем выбранный файл
+            string filename = saveFile.FileName;
+            // сохраняем текст в файл
+            System.IO.File.WriteAllLines(filename, filedata);
+            MessageBox.Show("Файл сохранен");
         }
     }
 }
