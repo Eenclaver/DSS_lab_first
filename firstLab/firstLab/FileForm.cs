@@ -74,8 +74,10 @@ namespace firstLab
 
         private void returnButton_Click(object sender, EventArgs e)
         {
-            StartForm frm= new StartForm();
-            frm.ShowDialog();
+            FileForm.ActiveForm.Hide();
+            StartForm MyForm2 = new StartForm();
+            MyForm2.ShowDialog();
+            Close();
 
         }
     }
