@@ -95,10 +95,25 @@ namespace firstLab
 
         private void returnButton_Click(object sender, EventArgs e)
         {
-            StartForm.ActiveForm.Hide();
-            FileForm MyForm2 = new FileForm();
-            MyForm2.ShowDialog();
-            Close();
+            try
+            {
+                Triangle.firstX = Convert.ToDouble(tb_firstTriangleX.Text);
+                Triangle.firstY = Convert.ToDouble(tb_firstTriangleY.Text);
+                Triangle.secondX = Convert.ToDouble(tb_secondTriangleX.Text);
+                Triangle.secondY = Convert.ToDouble(tb_secondTriangleY.Text);
+                Triangle.thirdX = Convert.ToDouble(tb_thirdTriangleX.Text);
+                Triangle.thirdY = Convert.ToDouble(tb_thirdTriangleY.Text);
+                Dot.dotX = Convert.ToDouble(tb_dotX.Text);
+                Dot.dotY = Convert.ToDouble(tb_dotY.Text);
+                StartForm.ActiveForm.Hide();
+                FileForm MyForm2 = new FileForm();
+                MyForm2.ShowDialog();
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Пожалуйста, введите все данные", "Ахтунг!Ошибка", MessageBoxButtons.OK);
+            }
         }
 
         private void cb_Welcome_CheckedChanged(object sender, EventArgs e)
