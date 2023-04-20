@@ -80,7 +80,6 @@ namespace firstLab
             StartForm MyForm2 = new StartForm();
             MyForm2.ShowDialog();
             Close();
-
         }
 
         private void bt_result_Click(object sender, EventArgs e)

@@ -33,7 +33,14 @@ namespace firstLab
             }
             else
             {
-                cb_welcome.Checked = true;
+                if(welcomeState == "FileForm")
+                {
+                    System.IO.File.WriteAllText("Cache", "Welcome"); 
+                }
+                else
+                {
+                    cb_welcome.Checked = true;
+                }
             }
         }
         private void Form1_Shown(Object sender, EventArgs e)
@@ -105,6 +112,7 @@ namespace firstLab
                 Triangle.thirdY = Convert.ToDouble(tb_thirdTriangleY.Text);
                 Dot.dotX = Convert.ToDouble(tb_dotX.Text);
                 Dot.dotY = Convert.ToDouble(tb_dotY.Text);
+                System.IO.File.WriteAllText("Cache", "FileForm");
                 StartForm.ActiveForm.Hide();
                 FileForm MyForm2 = new FileForm();
                 MyForm2.ShowDialog();
