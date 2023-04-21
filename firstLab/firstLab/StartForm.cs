@@ -76,11 +76,13 @@ namespace firstLab
                     lb_answer.Text = "Не принадлежит треугольнику";
                 }
                 Triangle.answerState = lb_answer.Text;
+                Triangle.canSaveResult = true;
             }
             else
             {
                 MessageBox.Show("Не треугольник", "Ахтунг!Ошибка", MessageBoxButtons.OK);
                 Triangle.answerState = "Не треугольник";
+                Triangle.canSaveResult = false;
             }
 
         }
@@ -91,6 +93,7 @@ namespace firstLab
             {
                 System.Windows.Forms.TextBox tb = (System.Windows.Forms.TextBox)sender;
                 double num = Convert.ToDouble(tb.Text);
+                Triangle.canSaveResult = false;//Так как меняем значение в текст боксе то результат сохранить нельзя
             }
             catch
             {
@@ -112,16 +115,17 @@ namespace firstLab
                 Triangle.thirdY = Convert.ToDouble(tb_thirdTriangleY.Text);
                 Dot.dotX = Convert.ToDouble(tb_dotX.Text);
                 Dot.dotY = Convert.ToDouble(tb_dotY.Text);
-                System.IO.File.WriteAllText("Cache", "FileForm");
-                StartForm.ActiveForm.Hide();
-                FileForm MyForm2 = new FileForm();
-                MyForm2.ShowDialog();
-                Close();
+                Triangle.canSave = true;
             }
             catch
             {
-                MessageBox.Show("Пожалуйста, введите все данные", "Ахтунг!Ошибка", MessageBoxButtons.OK);
+                Triangle.canSave = false;
             }
+            System.IO.File.WriteAllText("Cache", "FileForm");
+            StartForm.ActiveForm.Hide();
+            FileForm MyForm2 = new FileForm();
+            MyForm2.ShowDialog();
+            Close();
         }
 
         private void cb_Welcome_CheckedChanged(object sender, EventArgs e)
@@ -168,7 +172,7 @@ namespace firstLab
             double AB=Math.Sqrt(Math.Pow(Xb-Xa,2)+Math.Pow(Yb-Ya,2));
             double BC = Math.Sqrt(Math.Pow(Xc - Xb, 2) + Math.Pow(Yc - Yb, 2));
             double CA = Math.Sqrt(Math.Pow(Xa - Xc, 2) + Math.Pow(Ya - Yc, 2));
-            if (AB + BC >= CA || BC + CA >= AB || CA + AB >= BC)
+            if (AB + BC <= CA || BC + CA <= AB || CA + AB <= BC)
             {
                 answer=false;
             }

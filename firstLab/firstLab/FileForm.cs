@@ -15,6 +15,22 @@ namespace firstLab
         public FileForm()
         {
             InitializeComponent();
+            if (!Triangle.canSave)
+            {
+                MessageBox.Show("Функции сохранения отключены в связи с тем что не введены нужные данные");
+                bt_save.Enabled = false;
+                bt_result.Enabled = false;
+            }
+            else
+            {
+                bt_save.Enabled = true;
+                bt_result.Enabled = true;
+                if (!Triangle.canSaveResult)
+                {
+                    MessageBox.Show("Функция сохранения результата отключена в связи с тем что результат не был получен или значения после его получения были изменены");
+                    bt_result.Enabled = false;
+                }
+            }
         }
 
         private void bt_upload_Click(object sender, EventArgs e)

@@ -15,5 +15,7 @@ namespace firstLab
         public static double thirdX=0;
         public static double thirdY=0;
         public static string answerState;
+        public static bool canSave = false;
+        public static bool canSaveResult = false;
     }
 }

@@ -73,7 +73,7 @@
             this.returnButton.Name = "returnButton";
             this.returnButton.Size = new System.Drawing.Size(108, 53);
             this.returnButton.TabIndex = 25;
-            this.returnButton.Text = "Вернутся";
+            this.returnButton.Text = "Вернуться";
             this.returnButton.UseVisualStyleBackColor = true;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
@@ -98,7 +98,7 @@
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.bt_save);
             this.Controls.Add(this.bt_upload);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FileForm";
