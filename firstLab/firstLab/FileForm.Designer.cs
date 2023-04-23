@@ -98,6 +98,7 @@
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.bt_save);
             this.Controls.Add(this.bt_upload);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
