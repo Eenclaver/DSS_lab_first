@@ -17,5 +17,6 @@ namespace firstLab
         public static string answerState;
         public static bool canSave = false;
         public static bool canSaveResult = false;
+        public static string cacheState = null;
     }
 }

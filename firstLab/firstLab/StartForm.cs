@@ -27,6 +27,7 @@ namespace firstLab
             tb_dotX.Text= Dot.dotX.ToString();
             tb_dotY.Text= Dot.dotY.ToString();
             string welcomeState= System.IO.File.ReadAllText("Cache");
+            Triangle.cacheState = welcomeState;
             if (welcomeState == "Welcome")
             {
                 MessageBox.Show("Для заданной точки и треугольника на плоскости определить, принадлежит ли точка треугольнику.", "Сошнев Андрей 415а, работа номер 1, вариант 6", MessageBoxButtons.OK);
@@ -35,7 +36,8 @@ namespace firstLab
             {
                 if(welcomeState == "FileForm")
                 {
-                    System.IO.File.WriteAllText("Cache", "Welcome"); 
+                    System.IO.File.WriteAllText("Cache", Triangle.cacheState);
+                   
                 }
                 else
                 {
@@ -133,10 +135,12 @@ namespace firstLab
             if(cb_welcome.Checked == true)
             {
                 System.IO.File.WriteAllText("Cache", "noWelcome");
+                Triangle.cacheState= "noWelcome";
             }
             else
             {
                 System.IO.File.WriteAllText("Cache", "Welcome");
+                Triangle.cacheState = "Welcome";
             }
         }
 
